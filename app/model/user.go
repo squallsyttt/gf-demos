@@ -19,6 +19,13 @@ type UserApiSignUpReq struct {
 	Nickname  string
 }
 
+// 更新密码请求参数，用于前后端交互参数格式约定 + my first goframe meaningful func
+type UserApiUpdatePwdReq struct {
+	Passport string `v:"required#账号不能为空"`
+	Password  string `v:"required|length:6,16#请输入确认密码|密码长度应当在:min到:max之间"`
+	Password2 string `v:"required|length:6,16|same:Password#密码不能为空|密码长度应当在:min到:max之间|两次密码输入不相等"`
+}
+
 // 登录请求参数，用于前后端交互参数格式约定
 type UserApiSignInReq struct {
 	Passport string `v:"required#账号不能为空"`
@@ -41,3 +48,11 @@ type UserServiceSignUpReq struct {
 	Password string
 	Nickname string
 }
+
+// 更新密码输入参数
+type UserServiceUpdatePwdReq struct {
+	Passport string
+	Password string
+}
+
+

@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+
 	"github.com/gogf/gf-demos/app/dao"
 	"github.com/gogf/gf-demos/app/model"
 )
@@ -28,6 +29,17 @@ func (s *userService) SignUp(r *model.UserServiceSignUpReq) error {
 		return errors.New(fmt.Sprintf("昵称 %s 已经存在", r.Nickname))
 	}
 	if _, err := dao.User.Save(r); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *userService) UpdatePwd(r *model.UserServiceUpdatePwdReq) error {
+	if s.CheckPassport(r.Passport) {
+		return errors.New(fmt.Sprintf("账号 %s 不存在",r.Passport))
+	}
+
+	if _,err := dao.User.Where("id",1).Update(r); err != nil {
 		return err
 	}
 	return nil

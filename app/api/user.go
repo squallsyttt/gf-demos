@@ -37,6 +37,26 @@ func (a *userApi) SignUp(r *ghttp.Request) {
 	}
 }
 
+func (a *userApi) UpdatePwd(r * ghttp.Request) {
+	var (
+		apiReq *model.UserApiUpdatePwdReq
+		serviceReq *model.UserServiceUpdatePwdReq
+	)
+	if err := r.ParseForm(&apiReq); err != nil {
+		response.JsonExit(r, 1, err.Error())
+	}
+	if err := gconv.Struct(apiReq,&serviceReq); err != nil {
+		response.JsonExit(r,2,err.Error())
+	}
+	if err := service.User.UpdatePwd(serviceReq); err != nil {
+		response.JsonExit(r, 3, err.Error())
+	}else{
+		response.JsonExit(r, 0, "777")
+	}
+
+	
+}
+
 // @summary 用户登录接口
 // @tags    用户服务
 // @produce json
@@ -125,3 +145,5 @@ func (a *userApi) CheckNickName(r *ghttp.Request) {
 func (a *userApi) Profile(r *ghttp.Request) {
 	response.JsonExit(r, 0, "", service.User.GetProfile(r.Context()))
 }
+
+
