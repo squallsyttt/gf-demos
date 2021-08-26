@@ -8,12 +8,12 @@ import (
 	"github.com/gogf/gf/util/gconv"
 )
 
-// 用户API管理对象
+// User 用户API管理对象
 var User = new(userApi)
 
 type userApi struct{}
 
-// @summary 用户注册接口
+// SignUp @summary 用户注册接口
 // @tags    用户服务
 // @produce json
 // @param   entity  body model.UserApiSignUpReq true "注册请求"
@@ -37,6 +37,7 @@ func (a *userApi) SignUp(r *ghttp.Request) {
 	}
 }
 
+
 func (a *userApi) UpdatePwd(r * ghttp.Request) {
 	var (
 		apiReq *model.UserApiUpdatePwdReq
@@ -57,7 +58,7 @@ func (a *userApi) UpdatePwd(r * ghttp.Request) {
 	
 }
 
-// @summary 用户登录接口
+// SignIn @summary 用户登录接口
 // @tags    用户服务
 // @produce json
 // @param   passport formData string true "用户账号"
@@ -78,7 +79,7 @@ func (a *userApi) SignIn(r *ghttp.Request) {
 	}
 }
 
-// @summary 判断用户是否已经登录
+// IsSignedIn @summary 判断用户是否已经登录
 // @tags    用户服务
 // @produce json
 // @router  /user/issignedin [GET]
@@ -87,7 +88,7 @@ func (a *userApi) IsSignedIn(r *ghttp.Request) {
 	response.JsonExit(r, 0, "", service.User.IsSignedIn(r.Context()))
 }
 
-// @summary 用户注销/退出接口
+// SignOut @summary 用户注销/退出接口
 // @tags    用户服务
 // @produce json
 // @router  /user/signout [GET]
@@ -99,7 +100,7 @@ func (a *userApi) SignOut(r *ghttp.Request) {
 	response.JsonExit(r, 0, "ok")
 }
 
-// @summary 检测用户账号接口(唯一性校验)
+// CheckPassport @summary 检测用户账号接口(唯一性校验)
 // @tags    用户服务
 // @produce json
 // @param   passport query string true "用户账号"
@@ -118,7 +119,7 @@ func (a *userApi) CheckPassport(r *ghttp.Request) {
 	response.JsonExit(r, 0, "", true)
 }
 
-// @summary 检测用户昵称接口(唯一性校验)
+// CheckNickName @summary 检测用户昵称接口(唯一性校验)
 // @tags    用户服务
 // @produce json
 // @param   nickname query string true "用户昵称"
@@ -137,7 +138,7 @@ func (a *userApi) CheckNickName(r *ghttp.Request) {
 	response.JsonExit(r, 0, "ok", true)
 }
 
-// @summary 获取用户详情信息
+// Profile @summary 获取用户详情信息
 // @tags    用户服务
 // @produce json
 // @router  /user/profile [GET]
