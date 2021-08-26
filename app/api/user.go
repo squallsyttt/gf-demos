@@ -37,7 +37,7 @@ func (a *userApi) SignUp(r *ghttp.Request) {
 	}
 }
 
-// UpdatePwd Annotation todo
+// UpdatePwd Annotation todo 2
 func (a *userApi) UpdatePwd(r * ghttp.Request) {
 	var (
 		apiReq *model.UserApiUpdatePwdReq
