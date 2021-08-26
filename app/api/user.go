@@ -39,6 +39,8 @@ func (a *userApi) SignUp(r *ghttp.Request) {
 
 
 func (a *userApi) UpdatePwd(r * ghttp.Request) {
+	b:=1
+
 	var (
 		apiReq *model.UserApiUpdatePwdReq
 		serviceReq *model.UserServiceUpdatePwdReq
